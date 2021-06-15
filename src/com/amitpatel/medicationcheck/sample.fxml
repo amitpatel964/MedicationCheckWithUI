@@ -1,0 +1,116 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane fx:controller="com.amitpatel.medicationcheck.Controller" xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <HBox spacing ="10" alignment="top_left">
+            <padding>
+                <Insets left="5"/>
+            </padding>
+            <Button text="Create new table using .txt file" onAction="#CreateFromFile"/>
+            <Button text="Import Table" onAction="#importTableFunction"/>
+            <Button text="Export table" onAction="#exportTablefunction"/>
+            <Button text="Help" onAction="#newWindow"/>
+        </HBox>
+    </top>
+
+<!--    <left>-->
+<!--        <GridPane alignment="CENTER" hgap="20">-->
+<!--            <Label text="Are you using this medicine for this?" fx:id="leftLabel" GridPane.columnIndex="0" GridPane.rowIndex="0">-->
+<!--                <Font size="20"/>-->
+<!--            </Label>-->
+<!--            <Button text="Yes" fx:id="yesButton" GridPane.columnIndex="0" GridPane.rowIndex="1" />-->
+<!--            <Button text="No" fx:id="noButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+<!--        </GridPane>-->
+<!--    </left>-->
+
+<!--    <right>-->
+<!--        <GridPane alignment="CENTER" hgap="20">-->
+<!--            <Label text="Do you know what you are using this medicine for?" GridPane.columnIndex="0" GridPane.rowIndex="0">-->
+<!--                <Font size="20"/>-->
+<!--            </Label>-->
+<!--            <TextField fx:id="otherCategoryAdd" GridPane.columnIndex="0" GridPane.rowIndex="1"/>-->
+<!--            <Button text="Add" fx:id="otherAddButton" GridPane.columnIndex="0" GridPane.rowIndex="2"/>-->
+<!--            <Button text="I am unsure" fx:id="unsureButton" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
+<!--        </GridPane>-->
+<!--    </right>-->
+
+    <center>
+        <VBox alignment="TOP_CENTER">
+            <Label text="Medicine Table" BorderPane.alignment="TOP_CENTER">
+                <font>
+                    <Font size="20"/>
+                </font>
+            </Label>
+            <Label fx:id="actionResult" BorderPane.alignment="TOP_CENTER">
+                <font>
+                    <Font size="15"/>
+                </font>
+            </Label>
+            <TableView fx:id="medicineTableListView">
+                <columns>
+                    <TableColumn minWidth="200" text="Category">
+                        <cellValueFactory><PropertyValueFactory property="categories" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn minWidth="600" text="Medications">
+                        <cellValueFactory><PropertyValueFactory property="medications" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <bottom>
+        <GridPane alignment="CENTER" hgap="10" vgap="5">
+            <Label text="Medicine Name to Add" BorderPane.alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <font>
+                    <Font size="15"/>
+                </font>
+            </Label>
+            <TextField fx:id="medicineNameAddInput" onKeyReleased="#addMedicineFromInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Button fx:id="addButtonInput" text="Add medicine" onAction="#medicineButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+            <Label text="Medicine Name" BorderPane.alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <font>
+                    <Font size="15"/>
+                </font>
+            </Label>
+            <Label text="Category to add to" BorderPane.alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <font>
+                    <Font size="15"/>
+                </font>
+            </Label>
+            <Label text="Category to remove from" BorderPane.alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <font>
+                    <Font size="15"/>
+                </font>
+            </Label>
+            <TextField fx:id="medicineNameAdd" onKeyReleased="#handleKeyReleasedAdd" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <TextField fx:id="medicineNameRemove" GridPane.columnIndex="2" onKeyReleased="#handleKeyReleasedRemove" GridPane.rowIndex="2"/>
+            <TextField fx:id="medicineNameChange" GridPane.columnIndex="3" onKeyReleased="#handleKeyReleasedChange" GridPane.rowIndex="2"/>
+            <TextField fx:id="categoryAdd" onKeyReleased="#handleKeyReleasedAdd" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <TextField fx:id="categoryRemove" onKeyReleased="#handleKeyReleasedRemove" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+            <TextField fx:id="categoryAddChange" onKeyReleased="#handleKeyReleasedChange" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+            <TextField fx:id="categoryRemoveChange" onKeyReleased="#handleKeyReleasedChange" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+            <Button fx:id="addButton" text="Add medicine" onAction="#medicineButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <Button fx:id="removeButton" text="Remove medicine" onAction="#medicineButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+            <Button fx:id="changeButton" text="Change medicine category" onAction="#medicineButtonClick" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+        </GridPane>
+    </bottom>
+</BorderPane>
